@@ -1,0 +1,174 @@
+<html>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+   
+    </head>
+    <body>
+        
+            <div class="container">
+                <div class="row">
+                    <!-- first chart box -->
+                    <div class="col-sm-12">
+                        <br><br><br>
+                        <div class="animation">
+                           <form action="#">
+                                Animation Styles:
+                                <input name="group1" value="linear" type="radio" class="animVal" id="test1" />
+                                <label  for="test1">Linear</label>
+                                
+                                
+                                <input name="group1" type="radio" value="quad" class="animVal"  id="test2" />
+                                <label  for="test2">Quad</label>
+                                
+                                
+                                <input  name="group1" value="cubic" class="animVal" type="radio" id="test3"  />
+                                <label  for="test3">Cubic</label>
+                                
+                                
+                                <input  name="group1" value="sin" class="animVal" type="radio" id="test4"  />
+                                <label  for="test4">Sin</label>
+                                
+                                
+                                <input  name="group1" value="exp" class="animVal" type="radio" id="test5"  />
+                                <label  for="test5">exp</label>
+                                
+                                
+                                <input  name="group1" value="circle" class="animVal" type="radio" id="test6"  />
+                                <label  for="test6">Circle</label>
+                                
+                                
+                                <input  name="group1" value="elastic" class="animVal" type="radio" id="test7"  />
+                                <label  for="test7">elastic</label>
+                                
+                                
+                                <input  name="group1" value="back" class="animVal" type="radio" id="test8"  />
+                                <label  for="test8">back</label>
+                                
+                                
+                                <input  name="group1" value="bounce" class="animVal" type="radio" id="test9"  />
+                                <label  for="test9">Bounce</label>
+                                
+                               
+                            </form>
+
+                                                      
+                            
+                        </div>
+
+                        <div class="addColors">
+                             Add colors:
+                                
+                                    <input type="checkbox" value="#2ecc71" class="colorVal"  id="indeterminate-checkbox" />
+                                    <label for="indeterminate-checkbox">#2ecc71</label>
+                                
+                                 
+                                    <input type="checkbox" value="#3498db" class="colorVal" id="indeterminate-checkbox1" />
+                                    <label for="indeterminate-checkbox1">#3498db</label>
+                                
+                                
+
+                                    <input type="checkbox" value="#bdc3c7" class="colorVal" id="indeterminate-checkbox2" />
+                                    <label for="indeterminate-checkbox2">#bdc3c7</label>
+                                
+                                    <input type="checkbox" value="#674c3c" class="colorVal" id="indeterminate-checkbox7" />
+                                    <label for="indeterminate-checkbox7">#674c3c</label>
+
+                                    <input type="checkbox" value="#344956" class="colorVal" id="indeterminate-checkbox8" />
+                                    <label for="indeterminate-checkbox8">#344956</label>
+
+
+                                    <input type="checkbox" value="#d35400" class="colorVal" id="indeterminate-checkbox9" />
+                                    <label for="indeterminate-checkbox9">#d35400</label>
+
+                                <button class="gnClr btn btn-default">
+                                    Genarate
+                                </button>
+
+                        </div>
+
+                    
+                    </div>
+
+                    <!-- second chart box row -->
+                    <div class="col-sm-12">
+                        <div class="chart1">
+                            <!-- chart render place -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+        <script src="js/bar_d3.js"></script>
+        <script src="js/bar_d3_01.js"></script>
+        <script src="js/app.js"></script>
+
+         <script>
+
+         var chart1 = $$bar();
+
+          var data = [
+        { category: "", value: 0 },
+        { category: "Shorts", value: 121 },
+        { category: "Water Bottle", value: 131 },
+        { category: "Cage", value: 401 },
+        { category: "Sleeve", value: 301 },
+        { category: "Tire", value: 171 },
+        { category: "Fender", value: 151 },
+        { category: "Vest", value: 291 },
+        { category: "Car", value: 191 },
+        { category: "cap", value: 231 },
+        { category: "Bike", value: 221 }
+        ];
+
+
+        chart1.fn_addColors(["yellow","orange","pink"])
+        .fn_addStyle([{"width":900,"height":550}])
+        .fn_barConfig(data,".chart1")
+        .fn_draw();
+
+
+        jQuery(document).ready(function(){
+            console.log("This is triggered");
+            jQuery(".animVal").click(function(){
+                chart1.fn_addAnimation({duration:1000,ease:$(this).val()}).fn_draw();
+                console.log(chart1);
+            })
+
+            jQuery(".colorVal").click(function(){
+                console.log($(this).val());
+            })
+
+             $('.gnClr').click(function(){
+                var val = [];
+                $(':checkbox:checked').each(function(i){
+                val[i] = $(this).val();
+                });
+                console.log(val);
+
+                chart1.fn_addColors(val).fn_draw();
+
+            });
+
+        });
+
+       
+
+
+
+       
+
+
+        </script>
+    
+
+    </body>
+</html>
